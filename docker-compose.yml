@@ -1,4 +1,4 @@
-nodeserver:
+server:
   build: .
   ports:
     - "8080"
