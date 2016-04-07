@@ -1,0 +1,10 @@
+nodeserver:
+  build: .
+  ports:
+    - "8080"
+
+nodeclient:
+  image: centos:centos7
+  links:
+    - nodeserver
+  command: "bash -cex 'while [ true ]; do curl -s http://nodeserver:8080 | grep \"Hello world\" && exit 0 || sleep 5; done'"
