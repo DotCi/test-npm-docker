@@ -9,10 +9,13 @@ RUN npm config set registry http://registry.npmjs.org
 RUN npm install -g npm@latest-2
 RUN npm version
 
-COPY package.json /src/package.json
-RUN cd /src; npm install --production
+ENV APP_DIR /usr/src/app
+RUN mkdir -p $APP_DIR
+WORKDIR $APP_DIR
+COPY package.json $APP_DIR/
+RUN npm install
 
-COPY . /src
+COPY . $APP_DIR/
 
 EXPOSE  8080
-CMD ["node", "/src/index.js"]
+CMD ["npm", "start"]
