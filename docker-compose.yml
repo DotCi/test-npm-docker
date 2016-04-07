@@ -1,0 +1,4 @@
+nodeserver:
+  build: .
+  ports:
+    - "8080"
