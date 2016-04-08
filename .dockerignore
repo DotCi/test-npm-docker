@@ -1,0 +1,6 @@
+.ci.yml
+.git
+.gitignore
+docker-compose.*
+node_modules
+npm-debug.log
