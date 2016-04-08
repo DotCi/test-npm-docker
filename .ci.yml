@@ -2,3 +2,7 @@ docker-compose-file: "docker-compose.dotci.yml"
 
 run:
   test:
+
+<% if ( DOTCI_TAG ) { %>
+after_each: "docker tag -f <% out << BUILD_TAG.replaceAll(/[^A-Za-z0-9]/,"").toLowerCase().replaceFirst(/^jenkins/,"") %>_server <% out<< JOB_NAME.toLowerCase().replaceAll('-','_') %>:<% out<< DOTCI_TAG.replaceAll(/[^A-Za-z0-9._]/,"").toLowerCase() %> && docker push <% out<< JOB_NAME.toLowerCase().replaceAll('-','_') %>:<% out<< DOTCI_TAG.replaceAll(/[^A-Za-z0-9._]/,"").toLowerCase() %>"
+<% } %>

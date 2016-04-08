@@ -3,9 +3,9 @@
 
 Demonstrate how to setup [DotCi](http://groupon.github.io/DotCi/user-guide/DockerCompose/) [docker-compose](https://docs.docker.com/compose/) build-type for npm originally based on https://nodejs.org/en/docs/guides/nodejs-docker-webapp
 
-This setup support 
+One-time __/configure__ your DotCi project to enable __Build Options: Build Tags__ to publish the build's docker server image when the repo is tagged. This transition provides an easy lookup between DOTCI/job/org/job/repo <=> GITHUB/org/repo/tree/tag <=> DOCKER/org/repo:tag
 
-#### local node development
+#### develop locally
 ```
 $ npm install -g npm@latest-2
 $ npm install
@@ -23,7 +23,7 @@ npm start
 ^C
 ```
 
-#### local docker testing like DotCi
+#### local docker testing
 ```
 $ docker-compose up build
 ...
