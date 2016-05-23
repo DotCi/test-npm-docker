@@ -4,7 +4,8 @@ run:
   test:
 
 <% if ( DOTCI_TAG ) { %>
-after_each: "docker tag -f <% out << BUILD_TAG.replaceAll(/[^A-Za-z0-9]/,"").toLowerCase().replaceFirst(/^jenkins/,"") %>_server <% out<< JOB_NAME.toLowerCase().replaceAll('-','_') %>:<% out<< DOTCI_TAG.replaceAll(/[^A-Za-z0-9._]/,"").toLowerCase() %> && docker push <% out<< JOB_NAME.toLowerCase().replaceAll('-','_') %>:<% out<< DOTCI_TAG.replaceAll(/[^A-Za-z0-9._]/,"").toLowerCase() %>"
-<% } else if (DOTCI_BRANCH == 'master') { %>
-after_each: "docker tag -f <% out << BUILD_TAG.replaceAll(/[^A-Za-z0-9]/,"").toLowerCase().replaceFirst(/^jenkins/,"") %>_server <% out<< JOB_NAME.toLowerCase().replaceAll('-','_') %>:latest && docker push <% out<< JOB_NAME.toLowerCase().replaceAll('-','_') %>:latest"
+plugins:
+  - publish:
+      server:
+        - "my.docker.registry"
 <% } %>
